@@ -8,6 +8,6 @@ The purpose of this exercise is to:
     2. Practice handling HTTP requests and responses without relying on frameworks.
 
 **Features
-    Handles basic HTTP requests (e.g., GET, POST, etc.).
-    Demonstrates routing and response handling.
-    Lightweight and minimal setup for learning purposes.
+    1. Handles basic HTTP requests (e.g., GET, POST, etc.).
+    2. Demonstrates routing and response handling.
+    3. Lightweight and minimal setup for learning purposes.
