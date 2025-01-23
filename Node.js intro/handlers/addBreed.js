@@ -26,6 +26,6 @@ document.querySelector("form").addEventListener(`submit`, async (e) => {
 
     const postData = await postReq.json();
     console.log(postData);
-    alert(postData); //I know is bad user expirience but the is a learning process
+    alert(postData); //I know is bad user expirience but this is a learning process
     inputEl.value = ``; // Clear the input text    
 });
