@@ -68,22 +68,33 @@ http.createServer((req, res) => {
 
                 req.on(`data`, chunk => {
                     body += chunk;
-                    body = JSON.parse(body);
                 });
-
+                
                 req.on(`end`, () => {
-                    const catsData = JSON.stringify(body, null, 2);
-                    res.writeHead(200, {"content-type": "text/plain"});
-                    res.end("The cat is added successfully!");
+                    body = JSON.parse(body);
+                    const catsData = body;
+                    const JSONcatsData = JSON.stringify({//Prepare to store the JSON data
+                        name : catsData.name,
+                        description : catsData.description,
+                        imgFileName : catsData.imgFileName,
+                        breed : catsData.breed,
+                    })
+                    const imgFile = Buffer.from(catsData.imgFile, `base64`);//Decode the base64 image
                     
-                    fs.writeFileSync(`./data/cats.json`, catsData, `utf8`);
+                    res.writeHead(200, { 'Content-Type': 'text/plain' });
+                    res.end(JSON.stringify("The cat was successfully added!"));
+                    
+                    //Store the data
+                    fs.writeFileSync(`./data/Pictures/${catsData.imgFileName}`, imgFile);
+                    fs.writeFileSync(`./data/cats.json`, JSONcatsData, `utf8`);
                 });
 
-                req.on(`error`, (error) => {
-                    res.writeHead(500, {"content-type": "text/plain"});
-                    res.end(`Internal Server Error: \n${error.message}`);
+                req.on('error', (err) => {
+                    console.error('Error:', err.message);
+                    res.writeHead(500, { 'Content-Type': 'text/plain' });
+                    res.end('Internal Server Error');
                 });
-            break;
+                break;
             }
         //Serving the javaScript(front end) 
         case `/handlers/addBreed`:
@@ -94,5 +105,5 @@ http.createServer((req, res) => {
             res.writeHead(200, {"content-type": "application/javascript"});
             res.end(fs.readFileSync(`./handlers/addCat.js`));
             break;
-        }        
+        }
 }).listen(port);
