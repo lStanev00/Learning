@@ -58,7 +58,7 @@ http.createServer((req, res) => {
                 break;
             }
         case `/data/cats`:
-            const cats = fs.readFileSync(`./data/cats.json`, `utf-8`);
+            let cats = fs.readFileSync(`./data/cats.json`, `utf-8`);
             if (req.method === `GET`) {
                 res.writeHead(200, {"content-type": "application/json"});
                 res.end(cats);
@@ -73,20 +73,22 @@ http.createServer((req, res) => {
                 req.on(`end`, () => {
                     body = JSON.parse(body);
                     const catsData = body;
-                    const JSONcatsData = JSON.stringify({//Prepare to store the JSON data
+                    const JSONcatsData = {//Prepare to store the JSON data
                         name : catsData.name,
                         description : catsData.description,
                         imgFileName : catsData.imgFileName,
                         breed : catsData.breed,
-                    })
+                    }
                     const imgFile = Buffer.from(catsData.imgFile, `base64`);//Decode the base64 image
-                    
+                    cats = JSON.parse(cats);//To JavaScript obj
+                    cats.push(JSONcatsData);//Update the info
+                    cats = JSON.stringify(cats);//Stringify to JSON back to export
                     res.writeHead(200, { 'Content-Type': 'text/plain' });
                     res.end(JSON.stringify("The cat was successfully added!"));
                     
                     //Store the data
                     fs.writeFileSync(`./data/Pictures/${catsData.imgFileName}`, imgFile);
-                    fs.writeFileSync(`./data/cats.json`, JSONcatsData, `utf8`);
+                    fs.writeFileSync(`./data/cats.json`, cats, `utf8`);
                 });
 
                 req.on('error', (err) => {
@@ -105,5 +107,27 @@ http.createServer((req, res) => {
             res.writeHead(200, {"content-type": "application/javascript"});
             res.end(fs.readFileSync(`./handlers/addCat.js`));
             break;
+        case `/handlers/home`:
+            res.writeHead(200, {"content-type": "application/javascript"});
+            res.end(fs.readFileSync(`./handlers/home.js`));
+            break
+
+        //Default behavior
+        default:
+            //Handle the pictures serving
+            if (req.url.includes(`/data/Pictures`)){
+                const requestedPicture = req.url.replace(`/data/Pictures/`, ``);
+                const [ name, extension ] = requestedPicture.split(`.`);
+                res.writeHead(200, {
+                    "content-type" : `image/${extension}`,
+                    "cache-control" : `no-cache, no-store, must-revalidate`
+                });
+                
+                fs.createReadStream(`./data/Pictures/${requestedPicture}`).pipe(res);
+                
+            }
         }
-}).listen(port);
+
+}).listen(port, () => {
+    console.log(`Server running at : http://localhost:${port}/`);    
+});
