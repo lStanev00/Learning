@@ -42,7 +42,7 @@ for (const catInfo of catsJSON) {//Build the HTML (keep it as vanilla as possibl
         liEditEl.classList = `btn edit`;
         
             const aEditEl = document.createElement(`a`);
-            aEditEl.href = `TODO`;
+            aEditEl.href = `/editCat/${name}`;
             aEditEl.textContent = `Change Info TODO`;
             liEditEl.append(aEditEl);
 
