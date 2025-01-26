@@ -2,6 +2,8 @@ const http = require(`http`);
 const fs = require(`fs`);
 const port = 3000;
 
+const catShelter = require(`./views/catShelter.html.js`);
+
 http.createServer((req, res) => {
     switch (req.url) {
          //Site Routing
@@ -143,8 +145,20 @@ http.createServer((req, res) => {
                 });
                 
                 fs.createReadStream(`./data/Pictures/${requestedPicture}`).pipe(res);
+                break;
+             } else if(req.url.includes(`/catShelter`)){
+                const currentCat = decodeURIComponent(req.url.replace(`/catShelter/`, ``));
+                const catsDB = JSON.parse(fs.readFileSync(`./data/cats.json`, `utf8`));
+                const catObj = catsDB.find(obj => obj["name"] == currentCat);
+                console.log(currentCat);
                 
+                res.writeHead(200, {
+                    "content-type": "text/html"
+                });
+                res.end(catShelter(catObj.breed, catObj.description, catObj.imgFileName, catObj.name));
+                break;
             }
+            break;
         }
 
 }).listen(port, () => {
