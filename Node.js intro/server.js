@@ -97,6 +97,19 @@ http.createServer((req, res) => {
                     res.end('Internal Server Error');
                 });
                 break;
+            } else if(req.method === `DELETE`) {
+               let body = ``;
+               
+               req.on(`data`, chunk => {
+                body += chunk;
+               });
+               req.on(`end`, () => {
+                body = JSON.parse(body);
+                cats = JSON.parse(cats);
+                const deleteIndex = cats.indexOf(body);
+                cats.splice(deleteIndex, 1);
+                fs.writeFileSync(`./data/cats.json`, JSON.stringify(cats), `utf8`);
+               })
             }
         //Serving the javaScript(front end) 
         case `/handlers/addBreed`:
