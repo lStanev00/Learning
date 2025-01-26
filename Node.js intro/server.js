@@ -109,7 +109,13 @@ http.createServer((req, res) => {
                 const deleteIndex = cats.indexOf(body);
                 cats.splice(deleteIndex, 1);
                 fs.writeFileSync(`./data/cats.json`, JSON.stringify(cats), `utf8`);
-               })
+                fs.unlinkSync(`./data/Pictures/${body.imgFileName}`);
+                res.writeHead(200, {
+                    "content-type" : "text/plain"
+                })
+                res.end(JSON.stringify(`The cat jsut found a new home`));
+               });
+               break;
             }
         //Serving the javaScript(front end) 
         case `/handlers/addBreed`:
