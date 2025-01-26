@@ -4,16 +4,12 @@ const port = 3000;
 
 const catShelter = require(`./views/catShelter.html.js`);
 
-http.createServer((req, res) => {
+http.createServer(async (req, res) => {
     switch (req.url) {
          //Site Routing
         case `/styles/site.css` :
             res.writeHead(200, {"content-type": `text/css`});
             res.end(fs.readFileSync(`./content/styles/site.css`, `utf8`));
-            break;
-        case `/images/pawprint.ico`:
-            res.writeHead(200, {"content-type": `image/x-icon`});
-            res.end(fs.readFileSync(`./content/images/pawprint.ico`));
             break;
         case `/cats/add-breed`: 
             res.writeHead(200, {"content-type": `text/html`});
@@ -132,6 +128,10 @@ http.createServer((req, res) => {
             res.writeHead(200, {"content-type": "application/javascript"});
             res.end(fs.readFileSync(`./handlers/home.js`));
             break
+        case `/handlers/editCat`:
+            res.writeHead(200, {"content-type": "application/javascript"});
+            res.end(fs.readFileSync(`./handlers/editCat.js`));
+            break
 
         //Default behavior
         default:
@@ -150,12 +150,15 @@ http.createServer((req, res) => {
                 const currentCat = decodeURIComponent(req.url.replace(`/catShelter/`, ``));
                 const catsDB = JSON.parse(fs.readFileSync(`./data/cats.json`, `utf8`));
                 const catObj = catsDB.find(obj => obj["name"] == currentCat);
-                console.log(currentCat);
                 
                 res.writeHead(200, {
                     "content-type": "text/html"
                 });
                 res.end(catShelter(catObj.breed, catObj.description, catObj.imgFileName, catObj.name));
+                break;
+            } else if(req.url.includes(`/editCat`)) {
+                res.writeHead(200, {"content-type": `text/html`});
+                res.end(fs.readFileSync(`./views/editCat.html`, `utf8`));
                 break;
             }
             break;
