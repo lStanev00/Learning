@@ -2,6 +2,8 @@ const http = require(`http`);
 const fs = require(`fs`);
 const port = 3000;
 
+const catShelter = require(`./views/catShelter.html.js`);
+
 http.createServer((req, res) => {
     switch (req.url) {
          //Site Routing
@@ -97,6 +99,25 @@ http.createServer((req, res) => {
                     res.end('Internal Server Error');
                 });
                 break;
+            } else if(req.method === `DELETE`) {
+               let body = ``;
+               
+               req.on(`data`, chunk => {
+                body += chunk;
+               });
+               req.on(`end`, () => {
+                body = JSON.parse(body);
+                cats = JSON.parse(cats);
+                const deleteIndex = cats.indexOf(body);
+                cats.splice(deleteIndex, 1);
+                fs.writeFileSync(`./data/cats.json`, JSON.stringify(cats), `utf8`);
+                fs.unlinkSync(`./data/Pictures/${body.imgFileName}`);
+                res.writeHead(200, {
+                    "content-type" : "text/plain"
+                })
+                res.end(JSON.stringify(`The cat jsut found a new home`));
+               });
+               break;
             }
         //Serving the javaScript(front end) 
         case `/handlers/addBreed`:
@@ -124,8 +145,20 @@ http.createServer((req, res) => {
                 });
                 
                 fs.createReadStream(`./data/Pictures/${requestedPicture}`).pipe(res);
+                break;
+             } else if(req.url.includes(`/catShelter`)){
+                const currentCat = decodeURIComponent(req.url.replace(`/catShelter/`, ``));
+                const catsDB = JSON.parse(fs.readFileSync(`./data/cats.json`, `utf8`));
+                const catObj = catsDB.find(obj => obj["name"] == currentCat);
+                console.log(currentCat);
                 
+                res.writeHead(200, {
+                    "content-type": "text/html"
+                });
+                res.end(catShelter(catObj.breed, catObj.description, catObj.imgFileName, catObj.name));
+                break;
             }
+            break;
         }
 
 }).listen(port, () => {
