@@ -1,6 +1,7 @@
 const formEl = document.querySelector(`form`);
 const breedsData = await getBreedData(); //Import as type="module" in the HTML so we have a top lvl async
 const breedEl = document.querySelector("#group");
+const existingCats = await (await fetch(`http://localhost:3000/data/cats`)).json();
 (function optionConstructor(arr, el) { // Load the breeds in the breeds select falldown menu
     for (const breed of arr) { // Loop the breeds
         const optionEl = document.createElement(`option`);
@@ -29,6 +30,14 @@ formEl.addEventListener(`submit`, async (e) => {
     if (!imgFile ) return
     if (!breed) return
 
+    //Check if cat exist
+    const existingAlrady = existingCats.find(obj => obj["name"] == name);
+    if (existingAlrady) {
+        window.alert(`A cat with name - ${name}, already exists!\nPlease choice other name.`);
+        document.querySelector("#name").focus();
+        return
+    }
+
     const cat = new Cat(name, description, imgFile.replace(/^data:image\/[a-zA-Z]+;base64,/, ""), imgFileName, breed);
 
     const request = await fetch(URL, {
@@ -41,8 +50,8 @@ formEl.addEventListener(`submit`, async (e) => {
 
     const data = await request.json();
 
-    window.alert(data);
     formEl.reset();
+    window.location = `http://localhost:3030`;//Redirect to home
 })
 
 async function getBreedData() {
