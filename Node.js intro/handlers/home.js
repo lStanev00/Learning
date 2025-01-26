@@ -50,8 +50,8 @@ for (const catInfo of catsJSON) {//Build the HTML (keep it as vanilla as possibl
         liDeleteEl.classList = `btn delete`
 
             const aDeleteEl = document.createElement(`a`);
-            aDeleteEl.href = `TODO`;
-            aDeleteEl.textContent = `New Home TODO`;
+            aDeleteEl.href = `/catShelter/${name}`;
+            aDeleteEl.textContent = `New Home`;
             liDeleteEl.append(aDeleteEl);
 
         btnUlEl.append(liEditEl, liDeleteEl);
@@ -59,13 +59,6 @@ for (const catInfo of catsJSON) {//Build the HTML (keep it as vanilla as possibl
     liEl.append(imgEl, h3El, breedPEl, descPEl, btnUlEl);
     ulEl.append(liEl);//Append to DOM
 
-    //Handle buttons logic
-
-    aDeleteEl.addEventListener(`click`, async (e) => {
-        e.preventDefault();
-        deleteReq(catInfo);
-        liEl.remove();
-    })
 }
 
 
