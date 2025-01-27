@@ -43,7 +43,7 @@ formEl.addEventListener(`submit`, async (e) => {
     const data = await request.json();
 
     formEl.reset();
-    // window.location = `http://localhost:3000`;//Redirect to home
+    window.location = `http://localhost:3000`;//Redirect to home
 })
 
 async function getBreedData() {
