@@ -72,11 +72,14 @@ http.createServer(async (req, res) => {
                     body = JSON.parse(body);
                     const catsData = body;
                     const JSONcatsData = {//Prepare to store the JSON data
+                        innerID : catsData.innerID,
                         name : catsData.name,
                         description : catsData.description,
                         imgFileName : catsData.imgFileName,
                         breed : catsData.breed,
                     }
+                    console.log();
+                    
                     const imgFile = Buffer.from(catsData.imgFile, `base64`);//Decode the base64 image
                     cats = JSON.parse(cats);//To JavaScript obj
                     cats.push(JSONcatsData);//Update the info
@@ -137,7 +140,7 @@ http.createServer(async (req, res) => {
         default:
             //Handle the pictures serving
             if (req.url.includes(`/data/Pictures`)){
-                const requestedPicture = req.url.replace(`/data/Pictures/`, ``);
+                const requestedPicture = decodeURIComponent(req.url.replace(`/data/Pictures/`, ``));
                 const [ name, extension ] = requestedPicture.split(`.`);
                 res.writeHead(200, {
                     "content-type" : `image/${extension}`,
@@ -147,14 +150,14 @@ http.createServer(async (req, res) => {
                 fs.createReadStream(`./data/Pictures/${requestedPicture}`).pipe(res);
                 break;
              } else if(req.url.includes(`/catShelter`)){
-                const currentCat = decodeURIComponent(req.url.replace(`/catShelter/`, ``));
+                const currentCatID = decodeURIComponent(req.url.replace(`/catShelter/`, ``));
                 const catsDB = JSON.parse(fs.readFileSync(`./data/cats.json`, `utf8`));
-                const catObj = catsDB.find(obj => obj["name"] == currentCat);
+                const catObj = catsDB.find(obj => obj["innerID"] == currentCatID);
                 
                 res.writeHead(200, {
                     "content-type": "text/html"
                 });
-                res.end(catShelter(catObj.breed, catObj.description, catObj.imgFileName, catObj.name));
+                res.end(catShelter(catObj.innerID, catObj.breed, catObj.description, catObj.imgFileName, catObj.name));
                 break;
             } else if(req.url.includes(`/editCat`)) {
                 res.writeHead(200, {"content-type": `text/html`});

@@ -1,4 +1,4 @@
-catShelter = (breed, description, imgFileName, name) =>`<!DOCTYPE html>
+catShelter = (ID ,breed, description, imgFileName, name) =>`<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -39,9 +39,9 @@ catShelter = (breed, description, imgFileName, name) =>`<!DOCTYPE html>
     </main>
 </body>
 <script>
-console.log("${breed}");
 const link = "http://localhost:3000/"
 const cat = {
+    ID: "${ID}",
     breed: "${breed}",
     description: "${description}",
     imgFileName: "${imgFileName}",
