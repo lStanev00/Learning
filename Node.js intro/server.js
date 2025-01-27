@@ -117,6 +117,45 @@ http.createServer(async (req, res) => {
                 res.end(JSON.stringify(`The cat jsut found a new home`));
                });
                break;
+            } else if(req.method === `PATCH`) {
+                let body = ``;
+                cats = JSON.parse(cats)
+
+                req.on(`data`, chunk => {
+                    body += chunk;
+                });
+
+                req.on(`end`, () => {
+                    const data = JSON.parse(body);
+                    let updatedCat = {
+                        innerID : data.innerID,
+                        name : data.name,
+                        description : data.description,
+                    }
+                    console.log(data.oldImgFileName + `\n` + data.imgFileName);
+                    
+                    if(data.oldImgFileName === data.imgFileName) {
+                        updatedCat.imgFileName = data.oldImgFileName;
+                    } else {
+                        updatedCat.imgFileName = data.imgFileName;
+                        const imgFile = Buffer.from(data.imgFile, `base64`)
+                        fs.unlinkSync(`./data/Pictures/${data.oldImgFileName}`);
+                        fs.writeFileSync(`./data/Pictures/${data.imgFileName}`, imgFile);
+                    }
+                    updatedCat.breed = data.breed;
+                    const currentCatObjIndex = cats.findIndex(obj => obj["innerID"] == updatedCat.innerID);
+
+                    if(currentCatObjIndex != -1){
+                        cats[currentCatObjIndex] = updatedCat;
+                        fs.writeFileSync(`./data/cats.json`, JSON.stringify(cats), `utf8`);
+                    } else {
+                        console.log(`error index : ${currentCatObjIndex}\nupdated cat: ${updatedCat}\n`);
+                        
+                    }
+                    res.end();
+
+                });
+                break;
             }
         //Serving the javaScript(front end) 
         case `/handlers/addBreed`:
@@ -144,7 +183,8 @@ http.createServer(async (req, res) => {
                 const [ name, extension ] = requestedPicture.split(`.`);
                 res.writeHead(200, {
                     "content-type" : `image/${extension}`,
-                    "cache-control" : `no-cache, no-store, must-revalidate`
+                    "cache-control" : `no-cache, no-store, must-revalidate`,
+                    "Content-Disposition": `inline; filename="${requestedPicture}"`
                 });
                 
                 fs.createReadStream(`./data/Pictures/${requestedPicture}`).pipe(res);
