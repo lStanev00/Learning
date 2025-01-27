@@ -5,7 +5,7 @@ const ulEl = document.querySelector(`main > section > ul`);
 for (const catInfo of catsJSON) {//Build the HTML (keep it as vanilla as possible i can manage it eazier)
     const liEl = document.createElement(`li`);
 
-    const {  breed, description, imgFileName, name  } = catInfo;
+    const {  innerID,breed, description, imgFileName, name  } = catInfo;
     
     //Create the img
     const imgEl = document.createElement(`img`);
@@ -42,7 +42,7 @@ for (const catInfo of catsJSON) {//Build the HTML (keep it as vanilla as possibl
         liEditEl.classList = `btn edit`;
         
             const aEditEl = document.createElement(`a`);
-            aEditEl.href = `/editCat/${name}`;
+            aEditEl.href = `/editCat/${innerID}`;
             aEditEl.textContent = `Change Info TODO`;
             liEditEl.append(aEditEl);
 
@@ -50,7 +50,7 @@ for (const catInfo of catsJSON) {//Build the HTML (keep it as vanilla as possibl
         liDeleteEl.classList = `btn delete`
 
             const aDeleteEl = document.createElement(`a`);
-            aDeleteEl.href = `/catShelter/${name}`;
+            aDeleteEl.href = `/catShelter/${innerID}`;
             aDeleteEl.textContent = `New Home`;
             liDeleteEl.append(aDeleteEl);
 

@@ -72,11 +72,14 @@ http.createServer(async (req, res) => {
                     body = JSON.parse(body);
                     const catsData = body;
                     const JSONcatsData = {//Prepare to store the JSON data
+                        innerID : catsData.innerID,
                         name : catsData.name,
                         description : catsData.description,
                         imgFileName : catsData.imgFileName,
                         breed : catsData.breed,
                     }
+                    console.log();
+                    
                     const imgFile = Buffer.from(catsData.imgFile, `base64`);//Decode the base64 image
                     cats = JSON.parse(cats);//To JavaScript obj
                     cats.push(JSONcatsData);//Update the info
@@ -114,6 +117,45 @@ http.createServer(async (req, res) => {
                 res.end(JSON.stringify(`The cat jsut found a new home`));
                });
                break;
+            } else if(req.method === `PATCH`) {
+                let body = ``;
+                cats = JSON.parse(cats)
+
+                req.on(`data`, chunk => {
+                    body += chunk;
+                });
+
+                req.on(`end`, () => {
+                    const data = JSON.parse(body);
+                    let updatedCat = {
+                        innerID : data.innerID,
+                        name : data.name,
+                        description : data.description,
+                    }
+                    console.log(data.oldImgFileName + `\n` + data.imgFileName);
+                    
+                    if(data.oldImgFileName === data.imgFileName) {
+                        updatedCat.imgFileName = data.oldImgFileName;
+                    } else {
+                        updatedCat.imgFileName = data.imgFileName;
+                        const imgFile = Buffer.from(data.imgFile, `base64`)
+                        fs.unlinkSync(`./data/Pictures/${data.oldImgFileName}`);
+                        fs.writeFileSync(`./data/Pictures/${data.imgFileName}`, imgFile);
+                    }
+                    updatedCat.breed = data.breed;
+                    const currentCatObjIndex = cats.findIndex(obj => obj["innerID"] == updatedCat.innerID);
+
+                    if(currentCatObjIndex != -1){
+                        cats[currentCatObjIndex] = updatedCat;
+                        fs.writeFileSync(`./data/cats.json`, JSON.stringify(cats), `utf8`);
+                    } else {
+                        console.log(`error index : ${currentCatObjIndex}\nupdated cat: ${updatedCat}\n`);
+                        
+                    }
+                    res.end();
+
+                });
+                break;
             }
         //Serving the javaScript(front end) 
         case `/handlers/addBreed`:
@@ -137,24 +179,25 @@ http.createServer(async (req, res) => {
         default:
             //Handle the pictures serving
             if (req.url.includes(`/data/Pictures`)){
-                const requestedPicture = req.url.replace(`/data/Pictures/`, ``);
+                const requestedPicture = decodeURIComponent(req.url.replace(`/data/Pictures/`, ``));
                 const [ name, extension ] = requestedPicture.split(`.`);
                 res.writeHead(200, {
                     "content-type" : `image/${extension}`,
-                    "cache-control" : `no-cache, no-store, must-revalidate`
+                    "cache-control" : `no-cache, no-store, must-revalidate`,
+                    "Content-Disposition": `inline; filename="${requestedPicture}"`
                 });
                 
                 fs.createReadStream(`./data/Pictures/${requestedPicture}`).pipe(res);
                 break;
              } else if(req.url.includes(`/catShelter`)){
-                const currentCat = decodeURIComponent(req.url.replace(`/catShelter/`, ``));
+                const currentCatID = decodeURIComponent(req.url.replace(`/catShelter/`, ``));
                 const catsDB = JSON.parse(fs.readFileSync(`./data/cats.json`, `utf8`));
-                const catObj = catsDB.find(obj => obj["name"] == currentCat);
+                const catObj = catsDB.find(obj => obj["innerID"] == currentCatID);
                 
                 res.writeHead(200, {
                     "content-type": "text/html"
                 });
-                res.end(catShelter(catObj.breed, catObj.description, catObj.imgFileName, catObj.name));
+                res.end(catShelter(catObj.innerID, catObj.breed, catObj.description, catObj.imgFileName, catObj.name));
                 break;
             } else if(req.url.includes(`/editCat`)) {
                 res.writeHead(200, {"content-type": `text/html`});
