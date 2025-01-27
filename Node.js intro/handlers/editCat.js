@@ -1,7 +1,7 @@
 const curentCat = decodeURIComponent((window.location.href).replace("http://localhost:3000/editCat/", ``));
 const allCats = await(await fetch("http://localhost:3000/data/cats")).json();
 
-const catObj = allCats.find(obj => obj["name"] == curentCat);
+const catObj = allCats.find(obj => obj["innerID"] == curentCat);
 
 (async function domBuilder(catObj){
     const container = document.querySelector(`form`);
@@ -33,6 +33,7 @@ const catObj = allCats.find(obj => obj["name"] == curentCat);
     const imageInput = document.createElement(`input`);
     imageInput.type = `file`;
     imageInput.id = `image`;
+    await assignAPicture(catObj.imgFileName, imageInput);
 
     const groupLabel = document.createElement(`label`);
     groupLabel.setAttribute(`for`, `group`);
@@ -60,3 +61,15 @@ const catObj = allCats.find(obj => obj["name"] == curentCat);
     // Append elements to container
     container.append(title, nameLabel, nameInput, descLabel, descTextarea, imageLabel, imageInput, groupLabel, groupSelect, editButton);
 })(catObj);
+
+
+async function assignAPicture(fileName, element) {
+    const picBlob = await (await fetch(`http://localhost:3000/data/Pictures/${fileName}`)).blob();
+
+    const picFile = new File([picBlob], fileName, { type: picBlob.type });
+
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(picFile);
+    
+    element.files = dataTransfer.files;
+}
