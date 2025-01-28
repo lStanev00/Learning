@@ -220,3 +220,37 @@ body > form > label:nth-child(3) {
     background-color: lightskyblue;
     margin-bottom: 1.5rem;
 }
+
+/* Dropdown Suggestions 28.01.2025*/
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 250px;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 9999;
+    padding: 5px;
+}
+
+
+/* Individual list items */
+.suggestion-item {
+    padding: 8px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover effect */
+.suggestion-item:hover {
+    background-color: #d9d9d9;
+}
