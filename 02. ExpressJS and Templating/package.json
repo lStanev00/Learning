@@ -1,0 +1,25 @@
+{
+  "name": "movie-magic",
+  "version": "1.0.0",
+  "description": "Implementing express.js and templating (learning)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lStanev00/Learning.git#main"
+  },
+  "keywords": [
+    "learning",
+    "express.js",
+    "templating"
+  ],
+  "author": "Lachezar Stanev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lStanev00/Learning/tree/main/02.%20ExpressJS%20and%20Templating"
+  },
+  "homepage": "https://github.com/lStanev00/Learning/tree/main#readme"
+}
