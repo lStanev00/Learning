@@ -1,6 +1,6 @@
 import express from "express";
 import { engine } from "express-handlebars";
-import routes from "./controllers/router.js"; 
+import routes from "./router.js"; 
 
 const app = express();
 const port = 3000;
