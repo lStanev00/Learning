@@ -1,4 +1,4 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
 
 router.get('/', (req, res) => res.render('home'));
@@ -10,6 +10,6 @@ router.get('/details/:id', (req, res) => {
 });
 
 // Handle not found request
-router.get('/*', (req, res) => res.status(404).render('404'));
+router.use('/*', (req, res) => res.status(404).render('404'));
 
-module.exports = router
+export default router
