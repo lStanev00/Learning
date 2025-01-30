@@ -14,14 +14,15 @@
   "keywords": [
     "learning",
     "express.js",
-    "templating"
+    "templating",
+    "handlebars"
   ],
   "author": "Lachezar Stanev",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lStanev00/Learning/tree/main/02.%20ExpressJS%20and%20Templating"
+    "url": "https://github.com/lStanev00/Learning/issues"
   },
-  "homepage": "https://github.com/lStanev00/Learning/tree/main#readme",
+  "homepage": "https://github.com/lStanev00/Learning/tree/main/02.%20ExpressJS%20and%20Templating",
   "dependencies": {
     "express": "^4.21.2",
     "express-handlebars": "^8.0.1",
