@@ -1,7 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
+import { DBconnect } from "./Helpers/mongoHelpers.js";
 import newMoviePost from "./controllers/newMoviePost.js";
 
+await DBconnect();
 const router = express.Router();
 
 router.get('/', (req, res) => res.render('home'));
