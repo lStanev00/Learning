@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import { DBconnect } from "./Helpers/mongoHelpers.js";
 import newMoviePost from "./controllers/newMoviePost.js";
 import homeGet from "./controllers/homeGet.js";
+import detailsGet from "./controllers/detailsGet.js";
 
 await DBconnect();
 const router = express.Router();
@@ -12,9 +13,7 @@ router.get('/about', (req, res) => res.render('about'));
 router.get('/addMovie', (req, res) => res.render('newMovie'));
 router.post(`/addMovie`, newMoviePost);
 router.get('/search', (req, res) => res.render('search'));
-router.get('/details/:id', (req, res) => {
-    res.render('details')
-});
+router.get('/details/:id', detailsGet);
 
 // Handle not found request
 router.use('/*', (req, res) => res.status(404).render('404'));
