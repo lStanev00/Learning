@@ -8,6 +8,7 @@ export default async function newMoviePost(req, res){
         await newMovie.save();
 
         res.status(201).json({ message: "Movie added successfully", data: newMovie });
+        res.redirect(`/`);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
