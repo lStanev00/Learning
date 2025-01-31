@@ -17,10 +17,10 @@ const MovieSchema = new mongoose.Schema({
         min: [0, "Rating must be at least 0"], 
         max: [10, "Rating cannot be more than 10"] 
     },
-    description: { type: String, required: [true, "Description is required"], maxlength: [1000, "Description is too long (max 1000 characters)"] },
+    description: { type: String, required: [true, "Description is required"], maxlength: [250, "Description is too long (max 250 characters)"] },
     imgURL: { 
         type: String, 
-        required: [true, "Image URL is required"], 
+        required: [true, "Movie Poster URL is required"], 
         validate: {
             validator: function(v) {
                 return /^(http|https):\/\/.+/.test(v);
