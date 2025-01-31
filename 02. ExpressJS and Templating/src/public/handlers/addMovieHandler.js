@@ -40,6 +40,8 @@ formEl.addEventListener(`submit`, async (e) => {
         const data = await req.json()
         window.alert(errorToMSG(data))
         
+    } else if (req.status === 201) {
+        window.location = `/`
     }
 })
 
