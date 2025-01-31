@@ -1,1 +1,1 @@
-A learning project focused on implementing Express.js with templating.
+A learning project focused on implementing Express.js with templating and added MongoDB + Mongoose.
