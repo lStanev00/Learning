@@ -16,7 +16,6 @@ export default async function newMoviePost(req, res){
         // }
 
         res.status(201).json({ message: "Movie added successfully", data: newMovie });
-        // res.redirect(`/`);
     } catch (err) {
         if (err.message == `Movie already exists!`) {
             res.status(400).json(`Movie already exists!`);
