@@ -7,17 +7,6 @@ formEl.addEventListener(`submit`, async (e) => {
     let { category, description, director, genre, imgURL, rating, title, year } = Object.fromEntries(formData.entries());
     rating = Number(rating);
     year = Number(year);
-    console.log({
-        category: category,
-        description: description,
-        director: director,
-        genre: genre,
-        imgURL: imgURL,
-        rating: rating,
-        title: title,
-        year: year,
-    });
-    
 
     const req = await fetch(`http://localhost:3000/addMovie`, {
         headers: {
