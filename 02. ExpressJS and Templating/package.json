@@ -17,7 +17,8 @@
     "learning",
     "express.js",
     "templating",
-    "handlebars"
+    "handlebars",
+    "mongoDB"
   ],
   "author": "Lachezar Stanev",
   "license": "ISC",
