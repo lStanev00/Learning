@@ -2,7 +2,7 @@ import express from "express";
 import { DBconnect } from "./Helpers/mongoHelpers.js";
 import newMoviePost from "./controllers/newMoviePost.js";
 import homeGet from "./controllers/homeGet.js";
-import detailsGet from "./controllers/detailsGet.js";
+import getMovie from "./controllers/getMovie.js";
 
 await DBconnect();
 const router = express.Router();
@@ -13,8 +13,8 @@ router.get('/addMovie', (req, res) => res.render('newMovie'));
 router.post(`/addMovie`, newMoviePost);
 router.get('/search', (req, res) => res.render('search'));
 router.get('/createCast', (req, res) => res.render('createCast'));
-router.get('/attachCast/:id', (req, res) => res.render('attachCast'));
-router.get('/details/:id', detailsGet);
+router.get('/attachCast/:id', getMovie);
+router.get('/details/:id', getMovie);
 
 
 // Handle not found request

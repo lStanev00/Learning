@@ -1,6 +1,6 @@
 import Movie from "../Models/Movie.js";
 
-export default async function detailsGet(req, res) {
+export default async function getMovie(req, res) {
     const movieID = req.params.id;
 
     try {
@@ -9,7 +9,7 @@ export default async function detailsGet(req, res) {
             return res.status(404).send(`Movie not found`);
         }
         
-        res.render(`details`, { movie })
+        res.render(req.url.includes(`/details/`) ? `details` : `attachCast`, { movie })
     } catch (error) {
         res.status(500).send(`Error retrieving movie details`);
     }
