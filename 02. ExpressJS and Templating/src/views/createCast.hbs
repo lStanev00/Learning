@@ -1,10 +1,10 @@
   <section id="create-cast">
                 <div class="createCastSection">
                     <div class="info-cast">
-                        <h2>"You're gonna need a bigger boat." — "Jaws," 1975.</h2>
+                        <h2>Please fill the input fields to add a new actor.</h2>
                     </div>
 
-                    <form action="#" method="" class="createCastForm">
+                    <form method="POST" class="createCastForm">
                         <h2>Add Cast</h2>
                         <ul class="noBullet">
                             <li>
@@ -21,7 +21,7 @@
                             </li>
                             <li>
                                 <label for="name-in-movie">Name in Movie:</label>
-                                <input type="text" class="inputFields" id="name-in-movie" name="nameInMovie" value="" />
+                                <input type="text" class="inputFields" id="name-in-movie" name="nameInMovie" value="" disabled/>
                             </li>
                             <li>
                                 <label for="image">Cast Image:</label>
@@ -35,3 +35,4 @@
 
                 </div>
             </section>
+            <script type="module" src="/handlers/createCastHandler.js" defer></script>
