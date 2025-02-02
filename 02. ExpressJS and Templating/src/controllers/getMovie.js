@@ -15,7 +15,8 @@ export default async function getMovie(req, res) {
             res.render(`details`, { movie });
 
         } else if (req.url.includes(`/attachCast/`)) {
-            const castList = await Cast.find().lean();
+            const castList = await Cast.find({ _id: { $nin: movie.cast } }).lean();
+
 
             res.render(`attachCast`, { movie, castList });
 
