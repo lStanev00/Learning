@@ -4,6 +4,7 @@ import newMoviePost from "./controllers/newMoviePost.js";
 import homeGet from "./controllers/homeGet.js";
 import getMovie from "./controllers/getMovie.js";
 import createCastPost from "./controllers/createCastPost.js"
+import attachCastPost from "./controllers/attachCastPost.js";
 
 await DBconnect();
 const router = express.Router();
@@ -16,6 +17,7 @@ router.get('/search', (req, res) => res.render('search'));
 router.get('/createCast', (req, res) => res.render('createCast'));
 router.post('/createCast', createCastPost);
 router.get('/attachCast/:id', getMovie);
+router.post('/attachCast/:id', attachCastPost);
 router.get('/details/:id', getMovie);
 
 
