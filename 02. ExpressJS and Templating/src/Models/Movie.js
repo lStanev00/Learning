@@ -17,7 +17,7 @@ const MovieSchema = new mongoose.Schema({
         min: [0, "Rating must be at least 0"], 
         max: [5, "Rating cannot be more than 5"] 
     },
-    description: { type: String, required: [true, "Description is required"], maxlength: [500, "Description is too long (max 500 characters)"] },
+    description: { type: String, required: [true, "Description is required"], maxlength: [1000, "Description is too long (max 1000 characters)"] },
     imgURL: { 
         type: String, 
         required: [true, "Movie Poster URL is required"], 
