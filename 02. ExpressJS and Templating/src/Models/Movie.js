@@ -17,7 +17,7 @@ const MovieSchema = new mongoose.Schema({
         min: [0, "Rating must be at least 0"], 
         max: [5, "Rating cannot be more than 5"] 
     },
-    description: { type: String, required: [true, "Description is required"], maxlength: [250, "Description is too long (max 250 characters)"] },
+    description: { type: String, required: [true, "Description is required"], maxlength: [1000, "Description is too long (max 1000 characters)"] },
     imgURL: { 
         type: String, 
         required: [true, "Movie Poster URL is required"], 
@@ -31,16 +31,30 @@ const MovieSchema = new mongoose.Schema({
     cast: [{ type: mongoose.Schema.Types.ObjectId, ref: "Cast" }]
 });
 
-MovieSchema.pre("save", async function (next) {// Check if the movie exist already
-    const exist = await mongoose.model("Movie").findOne({ title: this.title, year: this.year});
+MovieSchema.pre("save", async function (next) {
+    try {
+        const exist = await mongoose.model("Movie").findOne({ title: this.title, year: this.year });
 
-    if (exist) {
-        return next(new Error("Movie already exists!"));
+        if (exist) {
+            // ✅ If only the cast is different, allow saving
+            if (!arraysEqual(exist.cast, this.cast)) {
+                return next();
+            }
+            return next(new Error("Movie already exists!"));
+        }
+
+        next();
+    } catch (error) {
+        next(error);
     }
-
-    next();
-})
+});
 
 const Movie = mongoose.model("Movie", MovieSchema);
 
 export default Movie
+
+
+function arraysEqual(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+    return arr1.every(item => arr2.includes(item.toString()));
+}
