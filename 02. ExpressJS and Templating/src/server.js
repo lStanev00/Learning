@@ -12,6 +12,7 @@ app.set("view engine", "hbs");
 app.set("views", "./src/views");
 
 app.use(express.json()); // Parser for json incomming
+app.use(express.urlencoded({ extended: true })) // Form parser
 
 // Router invoke
 app.use("/", routes);
