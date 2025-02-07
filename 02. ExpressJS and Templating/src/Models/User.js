@@ -4,7 +4,7 @@ import { encrypt } from "../Helpers/bcryptHelpers.js";
 const userSchema = new mongoose.Schema({
     email : { type: String, require: [true, "Email is required"], unique: true },
     password : { type: String, require: [true, "Password is required"] },
-    sessionID: { type: String, default: ""},
+    // sessionId: { type: String, require: false, default: undefined },
 })
 
 userSchema.pre("save", async function (next) {
