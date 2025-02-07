@@ -5,7 +5,7 @@ export async function encrypt(password) {
     return hashedPass
 }
 
-export async function check(userTry, accountActual) {
+export async function validatePassword(userTry, accountActual) {
     const validate = await bcrypt.compare(userTry, accountActual);
     return validate
 }

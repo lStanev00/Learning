@@ -1,5 +1,6 @@
 import express from "express";
 import { engine } from "express-handlebars";
+import cookieParser from "cookie-parser";
 import routes from "./router.js";
 import { starRating } from "./Helpers/handlebars/starRateing.js";
 
@@ -12,7 +13,8 @@ app.set("view engine", "hbs");
 app.set("views", "./src/views");
 
 app.use(express.json()); // Parser for json incomming
-app.use(express.urlencoded({ extended: true })) // Form parser
+app.use(express.urlencoded({ extended: true })); // Form parser
+app.use(cookieParser()); // Parse cookies
 
 // Router invoke
 app.use("/", routes);
