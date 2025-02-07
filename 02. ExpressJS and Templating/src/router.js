@@ -6,6 +6,7 @@ import getMovie from "./controllers/getMovie.js";
 import createCastPost from "./controllers/createCastPost.js"
 import attachCastPost from "./controllers/attachCastPost.js";
 import { registerPost } from "./controllers/registerPost.js";
+import 'dotenv/config'
 
 await DBconnect();
 const router = express.Router();
