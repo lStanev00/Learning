@@ -14,7 +14,7 @@ export default async function getMovie(req, res) {
         }
 
         if (req.url.includes(`/details/`)){
-            if (logedID === creatorID) res.locals.editTrue = true;
+            if (logedID === creatorID) res.locals.isOwner = true;
             res.render(`details`, { movie });
 
         } else if (req.url.includes(`/attachCast/`)) {
