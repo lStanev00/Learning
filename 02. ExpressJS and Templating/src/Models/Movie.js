@@ -29,7 +29,7 @@ const MovieSchema = new mongoose.Schema({
         }
     },
     cast: [{ type: mongoose.Schema.Types.ObjectId, ref: "Cast" }],
-    creatorID: [{ type: String, required: true }],
+    creatorID: { type: String, required: true },
 });
 
 MovieSchema.pre("save", async function (next) {
