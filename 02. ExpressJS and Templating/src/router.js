@@ -29,6 +29,7 @@ router.post('/createCast', createCastPost);
 router.get('/attachCast/:id', getMovie);
 router.post('/attachCast/:id', attachCastPost);
 router.get('/details/:id', getMovie);
+router.get(`/logout`, (req, res) => {res.clearCookie(`auth`); res.redirect(`/`)})
 
 
 // Handle not found request
