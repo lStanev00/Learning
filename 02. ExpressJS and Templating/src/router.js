@@ -7,10 +7,14 @@ import createCastPost from "./controllers/createCastPost.js"
 import attachCastPost from "./controllers/attachCastPost.js";
 import { registerPost } from "./controllers/registerPost.js";
 import loginPost from "./controllers/loginPost.js";
+import auth from "./controllers/authMiddleware.js";
+import editController from "./controllers/editController.js";
 import 'dotenv/config'
 
 await DBconnect();
 const router = express.Router();
+
+router.use(`/`, auth); // Auth middleware
 
 router.get('/', homeGet);
 router.get('/about', (req, res) => res.render('about'));
@@ -26,6 +30,8 @@ router.post('/createCast', createCastPost);
 router.get('/attachCast/:id', getMovie);
 router.post('/attachCast/:id', attachCastPost);
 router.get('/details/:id', getMovie);
+router.get(`/logout`, (req, res) => {res.clearCookie(`auth`); res.redirect(`/`)})
+router.get(`/edit/:id`, editController)
 
 
 // Handle not found request

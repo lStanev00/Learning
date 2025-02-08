@@ -21,12 +21,15 @@
                 <li><a href="/search">Search</a></li>
                 <li><a href="/about">About</a></li>
                 {{!-- Users --}}
+                {{#if user}}
                 <li><a href="/addMovie">Create Post</a></li>
                 <li><a href="/createCast">Create Cast</a></li>
                 <li><a href="/logout">Logout</a></li>
                 {{!-- Guests --}}
+                {{else}}
                 <li><a href="/login">Login</a></li>
                 <li><a href="/register">Register</a></li>
+                {{/if}}
             </ul>
 
         </nav>

@@ -4,16 +4,11 @@ export default async function newMoviePost(req, res){
     req.body.year = Number(req.body.year);
     req.body.rating = Number(req.body.rating);
     try {
+        req.body.creatorID = req.user._id;
+        
         const newMovie = new Movie(req.body);
         
         await newMovie.save();
-        // try {
-        //     await newMovie.validate();
-        //     console.log("Validation Passed!");
-        // } catch (err) {
-        //     console.error("Validation Error:", err.errors);
-        //     return res.status(400).json({ error: err.errors });
-        // }
 
         res.status(201).json({ message: "Movie added successfully", data: newMovie });
     } catch (err) {
