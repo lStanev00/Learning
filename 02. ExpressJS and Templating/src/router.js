@@ -7,10 +7,13 @@ import createCastPost from "./controllers/createCastPost.js"
 import attachCastPost from "./controllers/attachCastPost.js";
 import { registerPost } from "./controllers/registerPost.js";
 import loginPost from "./controllers/loginPost.js";
+import auth from "./controllers/authMiddleware.js";
 import 'dotenv/config'
 
 await DBconnect();
 const router = express.Router();
+
+router.use(`/`, auth); // Auth middleware
 
 router.get('/', homeGet);
 router.get('/about', (req, res) => res.render('about'));
