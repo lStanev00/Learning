@@ -28,7 +28,8 @@ const MovieSchema = new mongoose.Schema({
             message: "Movie Poster invalid image URL format"
         }
     },
-    cast: [{ type: mongoose.Schema.Types.ObjectId, ref: "Cast" }]
+    cast: [{ type: mongoose.Schema.Types.ObjectId, ref: "Cast" }],
+    creatorID: [{ type: String, required: true }],
 });
 
 MovieSchema.pre("save", async function (next) {
@@ -36,7 +37,7 @@ MovieSchema.pre("save", async function (next) {
         const exist = await mongoose.model("Movie").findOne({ title: this.title, year: this.year });
 
         if (exist) {
-            // ✅ If only the cast is different, allow saving
+            // If only the cast is different, allow saving
             if (!arraysEqual(exist.cast, this.cast)) {
                 return next();
             }
