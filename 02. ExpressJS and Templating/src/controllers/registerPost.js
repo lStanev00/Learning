@@ -6,7 +6,7 @@ export async function registerPost(req, res) {
     if (password == rePass){
         const newUser = new User({  email: email, password: password  });
         newUser.save();
-        res.redirect(`/register`);
+        res.redirect(`/login`);
     }else {
         return res.status(400).json({ message: "Passwords do not match" });
     }
