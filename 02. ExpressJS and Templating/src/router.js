@@ -9,7 +9,7 @@ import { registerPost } from "./controllers/registerPost.js";
 import loginPost from "./controllers/loginPost.js";
 import auth from "./controllers/authMiddleware.js";
 import editController from "./controllers/editController.js";
-import 'dotenv/config'
+import 'dotenv/config';
 
 await DBconnect();
 const router = express.Router();
