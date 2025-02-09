@@ -21,12 +21,12 @@
 
                             <p class="disc">Description: {{movie.description}}</p>
                             <p class="card-category">Category: {{movie.category}}</p>
-                            <!-- Cast Link -->
+                            
                             <a href="/attachCast/{{movie._id}}" class="cast-btn">Add Cast</a>
                             {{#if isOwner}}
                             <div class="details-btn">
                                 <button onclick="window.location.href='/edit/{{movie._id}}'" id="edit-button">Edit</button>
-                                <button onclick="window.location.href='/delete/{{movie._id}}'" id="delete-button">Delete</button>
+                                <button id="delete-button">Delete</button>
                             </div>
                             {{/if}}
                         </div>
@@ -55,3 +55,4 @@
                 {{/each}}
 
             </section>
+            <script src="/handlers/deleteConfirmation.js" type="module" defer></script>
