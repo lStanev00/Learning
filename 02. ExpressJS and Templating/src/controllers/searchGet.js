@@ -1,8 +1,17 @@
 import Movie from "../Models/Movie.js";
 
-async function getSearch(req, res) {
-    const movies = await Movie.find().lean();
-    res.render(`search`, {movies});
+async function findMovies(req, res) {
+    let { title, genre, year } = req.query;
+    let query = {};
+
+    if (title != ``) query.title = { $regex: new RegExp(title, "i") };
+    if (genre != ``) query.genre = { $regex: new RegExp(genre, "i") };
+    if (year) query.year = year;
+    
+
+    let movies = await Movie.find(query).lean();
+    
+    res.render(`search`, {movies})
 }
 
-export default getSearch;
+export default findMovies
