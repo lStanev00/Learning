@@ -11,7 +11,6 @@ import auth from "./controllers/authMiddleware.js";
 import editController from "./controllers/editController.js";
 import 'dotenv/config';
 import deletePost from "./controllers/deletePost.js";
-import getSearch from "./controllers/searchGet.js";
 
 await DBconnect();
 const router = express.Router();
@@ -19,7 +18,7 @@ const router = express.Router();
 router.use(`/`, auth); // Auth middleware
 
 router.get('/', homeGet);
-router.get(`/search`, getSearch);
+router.get(`/search`, homeGet);
 router.get('/about', (req, res) => res.render('about'));
 router.get('/addMovie', (req, res) => res.render('newMovie'));
 router.post(`/addMovie`, newMoviePost);
