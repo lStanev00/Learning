@@ -20,3 +20,8 @@ Tasks brakedown list:
 - [x] Config the engine (express now uses Handlebars as view engine)
 - [x] Set views folder
 - [x] Partials and layout dir 
+- [x] Basic view with layout
+4. Database setup
+- [x] npm install mongoose
+- [x] Connect the database
+- [x] Add user model
