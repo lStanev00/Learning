@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-const uri = `mongodb://127.0.0.1:27017/movieMagic`
+const dbName = `test`
+const uri = `mongodb://127.0.0.1:27017/${dbName}`
 
 export async function DBconnect() {
     try {
