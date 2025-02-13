@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-const SECRET = `Softuniexam4e-8d2-*6*0*254/64as-df-cc-5r//-daz!@p!2!./EXDIFi=job.less//diebroke?quitNow:dieTmrw?,14f`
+const SECRET = `Softuniexam4e-8d2-*6*0*254/64as-df-cc-5r//-daz!@p!2!./EXDIFi=job.less//diebroke?quitNow:dieTmrw?,14f`;
+
 export function generateToken(user) { 
     return jwt.sign({
         _id : user._id,
