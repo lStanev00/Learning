@@ -25,6 +25,7 @@ Tasks brakedown list:
 - [x] npm install mongoose
 - [x] Connect the database
 - [x] Add user model
+- [x] Add User input validations
 5. Register
 - [x] install bcrypt
 - [x] Helpers for bcrypt
