@@ -31,3 +31,8 @@ Tasks brakedown list:
 - [x] Check confirm password
 - [x] Encrypt (hash) the passwoard on Model level (User model)
 - [x] Register controller with post request
+6. Login
+- [x] Login controller
+- [x] Validates the password
+- [x] Sending JWToken on success
+- [x] Error handled
