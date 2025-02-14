@@ -1,7 +1,7 @@
 import { Router } from "express";
 import User from '../Models/User.js';
 import { generateToken } from '../Helpers/jwtHelpers.js';
-import { encrypt, validatePassword } from "../Helpers/bcryptHelpers.js";
+import { validatePassword } from "../Helpers/bcryptHelpers.js";
 
 const loginControleer = Router();
 
@@ -40,3 +40,5 @@ async function loginAttempt(req, res) {
     }
     
 }
+
+export default loginControleer;
