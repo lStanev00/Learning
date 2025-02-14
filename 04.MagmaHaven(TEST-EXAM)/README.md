@@ -1,7 +1,7 @@
 # Magma Haven TODO Checklist
 
 ## Project Setup
-- [ ] Delete `node_modules` folder before submission
+- [x] Delete `node_modules` folder before submission
 - [x] Ensure all dependencies are listed in `package.json`
 - [x] Use Express.js as the backend framework
 - [x] Use MongoDB with Mongoose
@@ -57,7 +57,7 @@
 
 ### All Volcanoes Page
 - [x] Display all volcano posts with name, location, type, and image
-- [ ] Ensure each post has a Details button
+- [x] Ensure each post has a Details button
 - [x] Display 'There are no volcanoes found yet!' if the database is empty
 
 ### Details Page
@@ -84,19 +84,19 @@
 
 ## Validation & Error Handling
 ### User Validation
-- [ ] Username must be at least 2 characters long
-- [ ] Email must be at least 10 characters long
-- [ ] Password must be at least 4 characters long
-- [ ] Repeat password must match password
+- [x] Username must be at least 2 characters long
+- [x] Email must be at least 10 characters long
+- [x] Password must be at least 4 characters long
+- [x] Repeat password must match password
 
 ### Volcano Validation
-- [ ] Name must be at least 2 characters long
-- [ ] Location must be at least 3 characters long
-- [ ] Elevation must be at least 0
-- [ ] Last eruption year must be between 0 and 2024
-- [ ] Image URL must start with `http://` or `https://`
-- [ ] Type must be one of [Supervolcanoes, Submarine, Subglacial, Mud, Stratovolcanoes, Shield]
-- [ ] Description must be at least 10 characters long
+- [x] Name must be at least 2 characters long
+- [x] Location must be at least 3 characters long
+- [x] Elevation must be at least 0
+- [x] Last eruption year must be between 0 and 2024
+- [x] Image URL must start with `http://` or `https://`
+- [x] Type must be one of [Supervolcanoes, Submarine, Subglacial, Mud, Stratovolcanoes, Shield]
+- [x] Description must be at least 10 characters long
 
 ## Final Checks
 - [ ] Ensure `npm install` installs all dependencies
