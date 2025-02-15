@@ -1,7 +1,7 @@
 # Magma Haven TODO Checklist
 
 ## Project Setup
-- [ ] Delete `node_modules` folder before submission
+- [x] Delete `node_modules` folder before submission
 - [x] Ensure all dependencies are listed in `package.json`
 - [x] Use Express.js as the backend framework
 - [x] Use MongoDB with Mongoose
@@ -15,17 +15,17 @@
 - [x] Can access the Login page & functionality
 - [x] Can access the Register page & functionality
 - [x] Can access the All Volcanoes page
-- [ ] Can access the Details page (without functionality)
-- [ ] Can access the Search page & functionality
+- [x] Can access the Details page (without functionality)
+- [x] Can access the Search page & functionality
 
 ### Logged-In Users
 - [x] Can access the Home page
-- [ ] Can access the Details page & functionality
-- [ ] Can vote for volcanoes (if not the owner)
+- [x] Can access the Details page & functionality
+- [x] Can vote for volcanoes (if not the owner)
 - [x] Can create new volcano posts
 - [ ] Can edit & delete own volcano posts
 - [x] Can access the Logout functionality
-- [ ] Can access the Search page & functionality
+- [x] Can access the Search page & functionality
 
 ## Pages & Features
 ### Home Page
@@ -57,14 +57,14 @@
 
 ### All Volcanoes Page
 - [x] Display all volcano posts with name, location, type, and image
-- [ ] Ensure each post has a Details button
+- [x] Ensure each post has a Details button
 - [x] Display 'There are no volcanoes found yet!' if the database is empty
 
 ### Details Page
-- [ ] Show full details of the volcano post
-- [ ] Display Edit & Delete buttons if the user is the owner
-- [ ] Display Vote button if user is not the owner and hasn't voted
-- [ ] Display 'You've already voted for this volcano!' if the user has voted
+- [x] Show full details of the volcano post
+- [x] Display Edit & Delete buttons if the user is the owner
+- [x] Display Vote button if user is not the owner and hasn't voted
+- [x] Display 'You've already voted for this volcano!' if the user has voted
 
 ### Edit Volcano Post
 - [ ] Allow owners to edit their volcano posts
@@ -84,22 +84,22 @@
 
 ## Validation & Error Handling
 ### User Validation
-- [ ] Username must be at least 2 characters long
-- [ ] Email must be at least 10 characters long
-- [ ] Password must be at least 4 characters long
-- [ ] Repeat password must match password
+- [x] Username must be at least 2 characters long
+- [x] Email must be at least 10 characters long
+- [x] Password must be at least 4 characters long
+- [x] Repeat password must match password
 
 ### Volcano Validation
-- [ ] Name must be at least 2 characters long
-- [ ] Location must be at least 3 characters long
-- [ ] Elevation must be at least 0
-- [ ] Last eruption year must be between 0 and 2024
-- [ ] Image URL must start with `http://` or `https://`
-- [ ] Type must be one of [Supervolcanoes, Submarine, Subglacial, Mud, Stratovolcanoes, Shield]
-- [ ] Description must be at least 10 characters long
+- [x] Name must be at least 2 characters long
+- [x] Location must be at least 3 characters long
+- [x] Elevation must be at least 0
+- [x] Last eruption year must be between 0 and 2024
+- [x] Image URL must start with `http://` or `https://`
+- [x] Type must be one of [Supervolcanoes, Submarine, Subglacial, Mud, Stratovolcanoes, Shield]
+- [x] Description must be at least 10 characters long
 
 ## Final Checks
-- [ ] Ensure `npm install` installs all dependencies
-- [ ] Ensure `npm run start` starts the application
+- [x] Ensure `npm install` installs all dependencies
+- [x] Ensure `npm run start` starts the application
 - [ ] Test all required functionalities
 - [ ] Submit the last and final version

@@ -2,10 +2,14 @@ import mongoose from "mongoose";
 import { encrypt } from "../Helpers/bcryptHelpers.js";
 
 const UserSchema = new mongoose.Schema({
-    username: {type: String, unique: true, required: [true, `Username is required`]}, // Remove if missing!
+    username: {
+        type: String, unique: true, required: [true, `Username is required`],
+         min: [2, `Username msut be at last 2 chars`]
+        }, // Remove if missing!
     email: {
         type: String,
         required: [true, `Email's required!`],
+        min: [10, `Email must be at least 10 characters long`],
         unique: true,
         validate: {
             validator: function (v) {
@@ -16,7 +20,8 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: [true, `Password is required`]
+        required: [true, `Password is required`],
+        min: [10, `Password must be at least 4 characters long`],
     }
 });
 
