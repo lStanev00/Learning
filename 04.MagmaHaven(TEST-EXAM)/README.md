@@ -15,17 +15,17 @@
 - [x] Can access the Login page & functionality
 - [x] Can access the Register page & functionality
 - [x] Can access the All Volcanoes page
-- [ ] Can access the Details page (without functionality)
-- [ ] Can access the Search page & functionality
+- [x] Can access the Details page (without functionality)
+- [x] Can access the Search page & functionality
 
 ### Logged-In Users
 - [x] Can access the Home page
-- [ ] Can access the Details page & functionality
-- [ ] Can vote for volcanoes (if not the owner)
+- [x] Can access the Details page & functionality
+- [x] Can vote for volcanoes (if not the owner)
 - [x] Can create new volcano posts
 - [ ] Can edit & delete own volcano posts
 - [x] Can access the Logout functionality
-- [ ] Can access the Search page & functionality
+- [x] Can access the Search page & functionality
 
 ## Pages & Features
 ### Home Page
@@ -61,10 +61,10 @@
 - [x] Display 'There are no volcanoes found yet!' if the database is empty
 
 ### Details Page
-- [ ] Show full details of the volcano post
-- [ ] Display Edit & Delete buttons if the user is the owner
-- [ ] Display Vote button if user is not the owner and hasn't voted
-- [ ] Display 'You've already voted for this volcano!' if the user has voted
+- [x] Show full details of the volcano post
+- [x] Display Edit & Delete buttons if the user is the owner
+- [x] Display Vote button if user is not the owner and hasn't voted
+- [x] Display 'You've already voted for this volcano!' if the user has voted
 
 ### Edit Volcano Post
 - [ ] Allow owners to edit their volcano posts
