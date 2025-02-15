@@ -11,10 +11,11 @@ detailsCtrl.get(`/details/:id`, onLoad);
 
 async function onLoad(req, res) {
     const vol = await Volcano.findById(req.params.id).lean();
-    
     if (!vol) return res.redirect(`/`);
+    
     if (req.user._id == vol.owner) res.locals.owner = true;
-
+    if (vol.voteList.includes(req.user._id)) res.locals.voted = true
+    
     res.render(`details`, {vol});
 }
 
