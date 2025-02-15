@@ -23,7 +23,7 @@
 - [x] Can access the Details page & functionality
 - [x] Can vote for volcanoes (if not the owner)
 - [x] Can create new volcano posts
-- [ ] Can edit & delete own volcano posts
+- [x] Can edit & delete own volcano posts
 - [x] Can access the Logout functionality
 - [x] Can access the Search page & functionality
 
@@ -67,10 +67,10 @@
 - [x] Display 'You've already voted for this volcano!' if the user has voted
 
 ### Edit Volcano Post
-- [ ] Allow owners to edit their volcano posts
-- [ ] Pre-fill form with current volcano data
-- [ ] Redirect to details page on success
-- [ ] Prevent non-owners from editing posts
+- [x] Allow owners to edit their volcano posts
+- [x] Pre-fill form with current volcano data
+- [x] Redirect to details page on success
+- [x] Prevent non-owners from editing posts
 
 ### Delete Volcano Post
 - [ ] Allow owners to delete their volcano posts

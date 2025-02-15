@@ -1,5 +1,4 @@
 import { Router } from "express";
-import User from "../Models/User.js";
 import Volcano from "../Models/Volcano.js";
 
 const detailsCtrl = Router();
@@ -7,7 +6,7 @@ const detailsCtrl = Router();
 detailsCtrl.get(`/details/:id`, onLoad);
 
 detailsCtrl.get(`/vote/:id`, onVote);
-// detailsCtrl.post(`/delete/:id`, onDelete);
+detailsCtrl.get(`/delete/:id`, onDelete);
 
 async function onLoad(req, res) {
     const vol = await Volcano.findById(req.params.id).lean();
@@ -29,6 +28,18 @@ async function onVote(req,res) {
     
     await vol.save();
     return res.redirect(`/details/${vol._id}`)
+}
+
+async function onDelete(req, res) {
+    try {
+        const userID = req.user._id;
+        const vol = await Volcano.findById(req.params.id);
+        if (userID != vol.owner || !req?.user || !vol) res.redirect(`/details/${req.params.id}`);
+        await Volcano.deleteOne(vol);
+        res.redirect(`/catalog`);
+    } catch (error) {
+        res.status(404).json({messege: `Entry not found!`});
+    }
 }
 
 export default detailsCtrl;

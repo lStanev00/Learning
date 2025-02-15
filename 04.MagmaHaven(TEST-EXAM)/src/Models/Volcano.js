@@ -10,14 +10,14 @@ const VolcanoSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Volcano name is required.'],
     trim: true,
-    min: [2, `Name must be at least 2 characters long`]
+    minlength: [2, `Name must be at least 2 characters long`]
 
   },
   location: {
     type: String,
     required: [true, 'Location is required.'],
     trim: true,
-    min: [3, `Please provide the full name(at last 3 chars long).`]
+    minlength: [3, `Please provide the full name(at last 3 chars long).`]
   },
   elevation: {
     type: Number,
@@ -51,7 +51,7 @@ const VolcanoSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Description is required.'],
     trim: true,
-    min : [10, `Description need to be at last 10 chars`]
+    minlength : [10, `Description need to be at last 10 chars`]
   },
   voteList: [{
     type: mongoose.Schema.Types.ObjectId,
