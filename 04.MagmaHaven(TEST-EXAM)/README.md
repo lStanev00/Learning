@@ -99,7 +99,7 @@
 - [x] Description must be at least 10 characters long
 
 ## Final Checks
-- [ ] Ensure `npm install` installs all dependencies
-- [ ] Ensure `npm run start` starts the application
+- [x] Ensure `npm install` installs all dependencies
+- [x] Ensure `npm run start` starts the application
 - [ ] Test all required functionalities
 - [ ] Submit the last and final version

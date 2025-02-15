@@ -5,6 +5,7 @@ import loginControleer from "./controllers/loginController.js";
 import auth from "./controllers/authMiddleware.js";
 import catalogController from "./controllers/catalogController.js";
 import createCtrl from "./controllers/createCtrl.js";
+import detailsCtrl from "./controllers/detailsCtrl.js";
 
 const router = Router();
 
@@ -15,6 +16,7 @@ router.use(`/`, homeController);
 router.use(`/`, registerController);
 router.use(`/`, loginControleer);
 router.use(`/`, catalogController);
+router.use(`/`, detailsCtrl);
 
 router.get(`/logout`, (req, res) => {if(req.user) res.clearCookie(`auth`); res.redirect(`/`)});
 
