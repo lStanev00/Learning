@@ -1,0 +1,41 @@
+    {{#if error}}
+        <div>
+            <div class="errorContainer">
+                <p>{{error.messege}}</p>
+            </div>
+        </div>
+    {{/if}}
+        <section id="details-info">
+            <h1>Details</h1>
+            <div class="image">
+                <img src="{{dis.image}}">
+            </div>
+
+            <div class="info">
+                <div class="text">
+                    <h1 id="name">{{dis.name}}</h1>
+                    <h3 id="location">Location: {{dis.location}}</h3>
+                    <p id="type">Type: {{dis.type}}</p>
+                    <p id="year"><span>Year of the Event: {{dis.year}}</span></p>
+                    <p id="interested">Interested: {{dis.interestedList.length}}</p>
+                    <p id="description">{{dis.description}}</p>
+                </div>
+                <div class="product-btn">
+                    {{#if user}}
+                        {{#if owner}}
+                            <div class="author">
+                                <a href="/edit/{{dis._id}}" class="btn-edit">Edit</a>
+                                <a href="/delete/{{dis._id}}" class="btn-delete">Delete</a>
+                            </div>
+                        {{else}}
+                            {{#if voted}}
+                                <p class="interested-message">You've already been interested in this event!</p>
+                            
+                            {{else}}
+                                <a href="/vote/{{dis._id}}" class="btn-interested">Interested</a>
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}    
+                </div>
+            </div>
+        </section>
