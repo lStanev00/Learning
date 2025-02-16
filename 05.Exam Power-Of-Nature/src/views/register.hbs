@@ -1,0 +1,25 @@
+        {{#if error}}
+        <div>
+            <div class="errorContainer">
+            {{#each error}}
+                <p>{{this.message}}</p>
+            {{/each}}
+            </div>
+        </div>
+        {{/if}}
+
+        <div class="register-box">
+            <h1>Register</h1>
+            <form method="POST">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Username.." {{#if username}}value="{{username}}"{{/if}}>
+                <label>Email</label>
+                <input type="text" name="email" placeholder="Email.." {{#if email}}value="{{email}}"{{/if}}>
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password..">
+                <label>Confirm Password</label>
+                <input type="password" name="rePass" placeholder="Confirm Password..">
+                <input type="submit" value="Submit">
+            </form>
+            <p>Already have an account? <a href="/login">Login here</a></p>
+        </div>

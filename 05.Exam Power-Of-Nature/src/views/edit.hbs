@@ -1,0 +1,38 @@
+        {{#if error}}
+            {{#each error}}
+                <div>
+                    <div class="errorContainer">
+                        <p>{{this.message}}</p>
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+
+        <section id="create-container">
+            <div class="create-container-info">
+                <h1>Edit Event</h1>
+                <form method="POST">
+                    <label>Name of the Disaster:</label>
+                    <input type="text" id="name" name="name" placeholder="..." value="{{dis.name}}">
+                    <label>Type of Disaster:</label>
+                    <select id="type" name="type" value="{{dis.type}}">{{dis.type}}
+                        <option value="Wildfire">Wildfire</option>
+                        <option value="Flood">Flood</option>
+                        <option value="Earthquake" selected >Earthquake</option>
+                        <option value="Hurricane">Hurricane</option>
+                        <option value="Drought">Drought</option>
+                        <option value="Tsunami">Tsunami</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <label>Year of the Event:</label>
+                    <input type="number" id="elevations" name="year" placeholder="..." value="{{dis.year}}">
+                    <label>Location:</label>
+                    <input type="text" id="location" name="location" placeholder="..." value="{{dis.location}}">
+                    <label>Image:</label>
+                    <input type="text" id="image" name="image" placeholder="http://..." value="{{dis.image}}">
+                    <label>Description:</label>
+                    <textarea id="description" name="description" placeholder="...">{{dis.description}}</textarea>
+                    <input type="submit" id="btn" value="Submit"></input>
+                </form>
+            </div>
+        </section>

@@ -1,0 +1,24 @@
+        <section class="catalog">
+            <h1 id="title"><span>Power of Nature</span></h1>
+            <div class="item-list">
+                {{#if dis}}
+                    {{#each dis}}
+                        <div class="event">
+                            <div class="img">
+                                <img src="{{this.image}}">
+                            </div>
+                            <div class="event-info">
+                                <h1>{{this.name}}</h1>
+                                <p><span>Location: </span>{{this.location}}</p>
+                                <p><span>Type: </span>{{this.type}}</p>
+                            </div>
+
+                            <a href="/details/{{this._id}}" class="btn-details">Details</a>
+                        </div>
+                    {{/each}}
+                {{else}}
+                    <div class="no-event">
+                        <p>There are no events found yet!</p>
+                    </div>
+                {{/if}}
+        </section>

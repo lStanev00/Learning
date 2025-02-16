@@ -73,9 +73,9 @@
 - [x] Prevent non-owners from editing posts
 
 ### Delete Volcano Post
-- [ ] Allow owners to delete their volcano posts
-- [ ] Redirect to All Volcanoes page on success
-- [ ] Prevent non-owners from deleting posts
+- [x] Allow owners to delete their volcano posts
+- [x] Redirect to All Volcanoes page on success
+- [x] Prevent non-owners from deleting posts
 
 ### Search Functionality (Bonus)
 - [ ] Implement search by name and type (case insensitive)
